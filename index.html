@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        .placeBox {
+            height: 150vh;
+        }
+        .videoBox {
+            height: 200vh;
+        }
+        video {
+            position: sticky;
+            top: 0;
+            width: 70vw;
+            height: auto;
+            background: aqua;
+        }
+    </style>
+
+</head>
+<body>
+
+    <div class="placeBox"></div>
+    <div class="videoBox">
+        <h2>video</h2>
+        <video width="320" height="240">
+            <source src="./video/wz.webm"  type="video/webm">
+        </video>
+    </div>
+    <div class="placeBox"></div>
+
+    <script src="./js/jquery1.12.4.js"></script>
+    <script src="./js/ScrollTrigger.min.js"></script>
+    <script src="./js/gsap.min.js"></script>
+
+    <script>
+        
+        let $Media = document.querySelector('video');
+
+        ScrollTrigger.create({
+            trigger: $('.videoBox'),
+            scrub: true,
+            // markers: true,
+            start: "top top",
+            end: "bottom bottom",
+            onUpdate: function (e) {
+                if (!isNaN($Media.duration)) {
+                    $Media.currentTime = e.progress * $Media.duration;
+                }
+            },
+        })
+
+    </script>
+
+    
+</body>
+</html>
